@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDK Test</title>
+  </head>
+  <body>
+    <h1>SDK Test</h1>
+
+    <button id="open-checkout">Open Checkout</button>
+
+    <script type="module">
+      import CheckoutSDK from "./dist/checkout-sdk.js";
+      const button = document.getElementById("open-checkout");
+
+      button.addEventListener("click", () => {
+        CheckoutSDK.open({
+          productId: "1",
+          onSuccess: (data) => {
+            console.log("SUCCESS:", data);
+          },
+          onError: (error) => {
+            console.log("ERROR:", error);
+          },
+          onClose: (data) => {
+            console.log("CLOSED", data);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
